@@ -1,3 +1,6 @@
+import { BancoDeDados } from "./BancoDeDados.js";
+import { Pessoa } from "./Pessoa.js";
+
 // buscar os dados da tela quando o usuário "salvar"
 document.getElementById('frmClientes').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -10,4 +13,8 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
         alert("Preencha todos os campos corretamente");
         return;
     }
+
+    let pessoa = new Pessoa(nome, documento);
+    // enviar esse objeto para o banco de dados
+    BancoDeDados.salvar(pessoa);
 });

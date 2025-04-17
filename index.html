@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Cadastro</title>
-    
+
 </head>
 
 <body>
@@ -19,11 +19,16 @@
 
         <label>Documento (CPF ou RG): </label>
         <input type="text" id="documento">
-        
+
+        <select name="typeof-user" id="typeof-user">
+            <option value="cliente">Cliente</option>
+            <option value="funcionario">Funcionário</option>
+        </select>
+
         <button type="submit">Salvar</button><br><br>
     </form>
-    
-    <a href="./produtos.html">Ver Produtos</a>
+
+    <a href="./lista-cadastrados.html">Ver Usuários</a>
 
     <script type="module" src="./script.js"></script>
 </body>
