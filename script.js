@@ -1,5 +1,4 @@
 import { BancoDeDados } from "./bd/BancoDeDados.js";
-import { Pessoa } from "./classes/Pessoa.js";
 import { Funcionario } from "./classes/Funcionario.js";
 import { Cliente } from "./classes/Cliente.js"
 
@@ -40,10 +39,12 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
             return;
         }
         pessoa = new Cliente(nome, documento, veiculo);
+        
     }
 
     BancoDeDados.salvar(pessoa);
-
+    alert("Usuário Cadastrado com Sucesso!")
+    window.location.href = `lista-cadastrados.html`
 });
 
 // buscar os dados de um funcionário quando o user "salvar"

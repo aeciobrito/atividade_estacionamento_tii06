@@ -1,5 +1,5 @@
 import { Cliente } from "./Cliente.js";
-class Veiculo {
+export class Veiculo {
     #placa;
     #modelo;
     #cor;
@@ -19,9 +19,9 @@ class Veiculo {
     get cor() {return this.#cor}
     get tipo() {return this.#tipo}
     get clienteId() {return this.#clienteId}
+
+    toString() {
+        return `${this.tipo.toUpperCase()} - ${this.modelo} (${this.placa})`;
+    }
+    
 }
-
-let c1 = new Cliente(1, "Civic")
-
-let v1 = new Veiculo("abc-1234", "Civic", "Preto", "Carro", c1.id)
-console.log(v1.clienteId)
