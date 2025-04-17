@@ -1,4 +1,4 @@
-import { BancoDeDados } from "./BancoDeDados.js";
+import { BancoDeDados } from "./bd/BancoDeDados.js";
 const ul = document.getElementById("listaUsers");
 
 const users = BancoDeDados.buscarTodos();

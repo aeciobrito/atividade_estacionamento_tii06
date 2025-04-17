@@ -1,5 +1,5 @@
-import { BancoDeDados } from "./BancoDeDados.js";
-import { Pessoa } from "./Pessoa.js";
+import { BancoDeDados } from "./bd/BancoDeDados.js";
+import { Pessoa } from "./classes/Pessoa.js";
 
 // buscar os dados da tela quando o usuário "salvar"
 document.getElementById('frmClientes').addEventListener('submit', (e) => {

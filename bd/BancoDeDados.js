@@ -1,4 +1,4 @@
-import { Pessoa } from "./Pessoa.js"
+import { Pessoa } from "../classes/Pessoa.js"
 
 export class BancoDeDados {
     // CREATE
