@@ -3,8 +3,8 @@ import { Pessoa } from "./Pessoa.js";
 export class Cliente extends Pessoa {
     #veiculos;
 
-    constructor(id, veiculos) {
-        super();
+    constructor(nome, documento, veiculos) {
+        super(nome, documento)
         this.#veiculos = veiculos;
     }
 

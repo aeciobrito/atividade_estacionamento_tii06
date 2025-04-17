@@ -20,12 +20,36 @@
         <label>Documento (CPF ou RG): </label>
         <input type="text" id="documento">
 
-        <select name="typeof-user" id="typeof-user">
-            <option value="cliente">Cliente</option>
+        <label for="typeof-user">Tipo de Usuário:</label>
+        <select name="typeof-user" id="typeof-user" required>
             <option value="funcionario">Funcionário</option>
+            <option value="cliente">Cliente</option>
         </select>
 
-        <button type="submit">Salvar</button><br><br>
+        <!-- INPUTS PARA FUNCIONÁRIO -->
+        <div id="funcionario-fields" style="display: none;">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula">
+
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo">
+        </div>
+
+        <div id="client-fields" style="display: none;">
+            <label for="veiculo">Veículo:</label>
+            <input type="text" id="veiculo" name="veiculo">
+
+            <label for="placa">Placa:</label>
+            <input type="text" id="placa" name="placa">
+            
+            <label for="cor">Cor:</label>
+            <input type="text" id="cor" name="cor">
+            
+            <label for="tipo-veiculo">Tipo de Veículo:</label>
+            <input type="text" id="tipo-veiculo" name="tipo-veiculo">
+        </div>
+
+        <button type="submit">Salvar</button>
     </form>
 
     <a href="./lista-cadastrados.html">Ver Usuários</a>

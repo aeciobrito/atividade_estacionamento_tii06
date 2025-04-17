@@ -7,6 +7,8 @@ export class BancoDeDados {
             id: pessoa.id,
             nome: pessoa.nome,
             documento: pessoa.documento,
+            matricula: pessoa.matricula,
+            cargo: pessoa.cargo
         }));
     }
 
