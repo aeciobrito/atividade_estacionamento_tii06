@@ -49,7 +49,7 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
     BancoDeDados.salvar(pessoa);
     alert("Usuário Cadastrado com Sucesso!");
     document.getElementById('frmClientes').reset();
-    window.location.href = `lista-cadastrados.html`
+    window.location.href = `../cadastrados/lista-cadastrados.html`
 });
 
 // buscar os dados de um funcionário quando o user "salvar"
@@ -68,5 +68,22 @@ tipoUsuario.addEventListener('change', function () {
         camposCliente.style.display = 'block'
         camposFuncionario.style.display = 'none';
 
-    } 
+    }
 });
+
+// ----------------------- caso esteja editando -----------------------
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('id')) {
+    const pessoa = BancoDeDados.buscarPorId(urlParams.get('id'))
+
+    document.getElementById("id").value = pessoa.id;
+    document.getElementById("nome").value = pessoa.nome;
+    document.getElementById("documento").value = pessoa.documento;
+    document.getElementById("typeof-user").value = pessoa.user;
+    document.getElementById("matricula").value = pessoa.matricula;
+    document.getElementById("cargo").value = pessoa.cargo;
+    document.getElementById("veiculo").value = pessoa.veiculo;
+    document.getElementById("placa").value = pessoa.placa;
+    document.getElementById("cor").value = pessoa.cor;
+    document.getElementById("tipo-veiculo").value = pessoa.tipoVeiculo;
+}

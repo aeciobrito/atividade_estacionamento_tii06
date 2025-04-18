@@ -27,9 +27,9 @@ export class Pessoa {
 
     // função necessária para buscar todos os usuários
     static fromJSON(json) {
-        const pessoa = new Pessoa(json.nome, json.documento);
-        pessoa.#id = json.id;
-        return pessoa;
+        const pessoaJson = new Pessoa(json.nome, json.documento);
+        pessoaJson.#id = json.id;
+        return pessoaJson;
     }
 
     // função que transforma os dados e os permite ser lidos na tela

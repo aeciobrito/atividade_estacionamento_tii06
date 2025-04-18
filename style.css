@@ -22,8 +22,7 @@ h1 {
 
 form label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin: 10px 0;
     color: #555;
     font-weight: 600;
 }

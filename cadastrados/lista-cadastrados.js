@@ -1,5 +1,5 @@
-import { BancoDeDados } from "./bd/BancoDeDados.js";
-import { Cliente } from "./classes/Cliente.js";
+import { BancoDeDados } from "../bd/BancoDeDados.js";
+import { Cliente } from "../classes/Cliente.js";
 const ul = document.getElementById("listaUsers");
 
 const users = BancoDeDados.buscarTodos();
@@ -14,7 +14,7 @@ if (users.length === 0) {
         const btnEditar = document.createElement("button");
         btnEditar.textContent = "Editar";
         btnEditar.onclick = () => {
-            window.location.href = `index.html?id=${p.id}` // navega para a tela inicial
+            window.location.href = `../index.html?id=${p.id}` // navega para a tela inicial
         }
         
         const btnExcluir = document.createElement("button");

@@ -60,6 +60,19 @@ export class BancoDeDados {
         return usersCadastrados.sort((a, b) => a.id - b.id);
     }
 
+    static buscarPorId(id) {
+        const pessoa = localStorage.getItem(id); // pega o id da pessoa no local storage
+        const dados = JSON.parse(pessoa); // converte a pessoa em json
+
+        if (pessoa instanceof Cliente) {
+            return Cliente.fromJSON(dados);
+        } else if (pessoa instanceof Funcionario) {
+            return Funcionario.fromJSON(dados);
+        } else {
+            return Pessoa.fromJSON(dados);
+        }
+    }
+
     static excluir(id) {
         localStorage.removeItem(id);
     }
