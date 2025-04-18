@@ -1,6 +1,7 @@
 import { BancoDeDados } from "./bd/BancoDeDados.js";
 import { Funcionario } from "./classes/Funcionario.js";
 import { Cliente } from "./classes/Cliente.js"
+import { Veiculo } from "./classes/Veiculo.js"
 
 // buscar os dados da tela quando o usuário "salvar"
 document.getElementById('frmClientes').addEventListener('submit', (e) => {
@@ -12,7 +13,7 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
     const tipo = document.getElementById("typeof-user").value;
     const matricula = document.getElementById("matricula").value;
     const cargo = document.getElementById("cargo").value;
-    const veiculo = document.getElementById("veiculo").value;
+    const nomeVeiculo = document.getElementById("veiculo").value;
     const placa = document.getElementById("placa").value;
     const cor = document.getElementById("cor").value;
     const tipoVeiculo = document.getElementById("tipo-veiculo").value;
@@ -34,16 +35,20 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
 
     } else if (tipo === "cliente") {
 
-        if (!veiculo || !placa || !cor || !tipoVeiculo) {
+        if (!nomeVeiculo || !placa || !cor || !tipoVeiculo) {
             alert("Preencha os dados do Veículo");
             return;
         }
-        pessoa = new Cliente(nome, documento, veiculo);
+
+        pessoa = new Cliente(nome, documento);
+        const veiculo = new Veiculo(placa, nomeVeiculo, cor, tipoVeiculo, pessoa.id);
+        pessoa.adicionarVeiculo(veiculo);
         
     }
 
     BancoDeDados.salvar(pessoa);
-    alert("Usuário Cadastrado com Sucesso!")
+    alert("Usuário Cadastrado com Sucesso!");
+    document.getElementById('frmClientes').reset();
     window.location.href = `lista-cadastrados.html`
 });
 

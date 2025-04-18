@@ -34,7 +34,7 @@ export class Pessoa {
 
     // função que transforma os dados e os permite ser lidos na tela
     toString() {
-        let mensagem = ` ID: ${this.#id}, Usuário: ${this.#nome}, Documento ${this.#documento}`;
+        let mensagem = `Usuário: ${this.#nome}, Documento ${this.#documento}`;
         return mensagem;
     }
 }

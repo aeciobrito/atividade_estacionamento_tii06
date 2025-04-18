@@ -17,4 +17,8 @@ export class Funcionario extends Pessoa {
         let mensagem = ` ID: ${this.id}, Usuário: ${this.nome}, Documento: ${this.documento}, Matrícula: ${this.matricula}, Cargo :${this.cargo}`;
         return mensagem;
     }
+
+    static fromJSON(json) {
+        return new Veiculo(json.placa, json.modelo, json.cor, json.tipo, json.clienteId);
+    }
 }
