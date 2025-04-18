@@ -11,17 +11,6 @@ if (users.length === 0) {
         const li = document.createElement("li");
         li.textContent = p.toString();
 
-        // Se for cliente e tiver veículos, adiciona detalhes dos veículos
-        if (p instanceof Cliente && p.veiculos.length > 0) {
-            const ulVeiculos = document.createElement("ul");
-            p.veiculos.forEach(v => {
-                const liVeic = document.createElement("li");
-                liVeic.textContent = `Placa: ${v.placa}, Modelo: ${v.modelo}, Cor: ${v.cor}, Tipo: ${v.tipo}`;
-                ulVeiculos.appendChild(liVeic);
-            });
-            li.appendChild(ulVeiculos);
-        }
-
         const btnEditar = document.createElement("button");
         btnEditar.textContent = "Editar";
         btnEditar.onclick = () => {

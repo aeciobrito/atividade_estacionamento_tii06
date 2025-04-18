@@ -38,7 +38,7 @@ export class Cliente extends Pessoa {
             `Placa: ${v.placa}, Modelo: ${v.modelo}, Cor: ${v.cor}, Tipo: ${v.tipo}`
         ).join(" | ");
         
-        return `Cliente ${this.nome}, Documento: ${this.documento}, Veículos: [${veiculosInfo}]`;
+        return `Cliente: ${this.nome}, Documento: ${this.documento}, Veículos: [${veiculosInfo}]`;
     }
 
     restaurarId(id) {

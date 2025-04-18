@@ -1,51 +1,62 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    padding: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
     margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #333;
+    color: #2c3e50;
     text-align: center;
     margin-bottom: 30px;
 }
 
-form {
-    background-color: #fff;
-    padding: 25px;
-    max-width: 400px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-label {
+form label {
     display: block;
     margin-top: 15px;
     margin-bottom: 5px;
     color: #555;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-input {
+form input,
+form select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 15px;
     box-sizing: border-box;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease;
 }
 
-input:focus {
-    border-color: #28a745;
+form input:focus,
+form select:focus {
+    border-color: #3498db;
     outline: none;
+    background-color: #f9f9ff;
 }
 
-button {
+.subgroup {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f9ff;
+    border-left: 5px solid #3498db;
+    border-radius: 6px;
+}
+
+button[type="submit"] {
     margin-top: 25px;
-    padding: 12px;
+    padding: 14px;
     width: 100%;
     background-color: #28a745;
     border: none;
@@ -57,25 +68,23 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+button[type="submit"]:hover {
     background-color: #218838;
 }
 
-a {
+.botao-voltar {
     display: block;
-    margin: 0 auto;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
     text-decoration: none;
     color: #fff;
     background-color: #007bff;
     padding: 12px;
     border-radius: 6px;
     font-weight: bold;
-    transition: background-color 0.3s;
-    width: 400px;
+    transition: background-color 0.3s ease;
 }
 
-a:hover {
-    background-color: #0069d9;
+.botao-voltar:hover {
+    background-color: #0056b3;
 }

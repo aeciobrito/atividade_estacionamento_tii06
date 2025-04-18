@@ -14,7 +14,7 @@ export class Funcionario extends Pessoa {
     get cargo() { return this.#cargo; }
 
     toString() {
-        let mensagem = ` ID: ${this.id}, Usuário: ${this.nome}, Documento: ${this.documento}, Matrícula: ${this.matricula}, Cargo :${this.cargo}`;
+        let mensagem = `Funcionário: ${this.nome}, Documento: ${this.documento}, Matrícula: ${this.matricula}, Cargo: ${this.cargo}`;
         return mensagem;
     }
 
