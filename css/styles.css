@@ -4,10 +4,54 @@
     box-sizing: border-box;
 }
 
-h1 {
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 20px auto;
+    position: relative;
+}
+
+a {
+    position: absolute;
+    bottom: 10px;
+    width: 250px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #444;
+    border: 1px solid #333333b7;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+
+    &:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+}
+
+h1 {
+    background-color: #333333b7;
     text-align: center;
-    padding: 15px;
+    font-size: 2rem;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.8);
 }
 
 .form-container {
@@ -35,7 +79,8 @@ label {
     color: #333;
 }
 
-input, select {
+input,
+select {
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     padding: 8px;
@@ -61,20 +106,36 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
-ul li {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 18px;
-    list-style: none;
-    width: 80%;
-    height: 40px;
-    color: #f4f6f8;
-    background-color: #333333c0;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px auto;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    ul li {
+        font-size: 0.9rem;
+    }
 }
