@@ -22,7 +22,7 @@ h1 {
 
 form label {
     display: block;
-    margin: 10px 0;
+    margin: 10px 0 5px;
     color: #555;
     font-weight: 600;
 }
@@ -86,4 +86,65 @@ button[type="submit"]:hover {
 
 .botao-voltar:hover {
     background-color: #0056b3;
+}
+
+/* 🎯 Estilo para cada bloco de veículo */
+#lista-veiculos {
+    margin-top: 20px;
+}
+
+.veiculo {
+    background-color: #eef7ff;
+    border: 1px solid #cce0f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.veiculo label {
+    margin-top: 10px;
+}
+
+.veiculo input {
+    margin-bottom: 10px;
+}
+
+.veiculo hr {
+    margin-top: 20px;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.remover-veiculo {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.remover-veiculo:hover {
+    background-color: #c82333;
+}
+
+#adicionar-veiculo {
+    margin-top: 15px;
+    padding: 10px 14px;
+    background-color: #17a2b8;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#adicionar-veiculo:hover {
+    background-color: #138496;
 }

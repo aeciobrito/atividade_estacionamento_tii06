@@ -20,6 +20,10 @@ export class Veiculo {
     get tipo() {return this.#tipo}
     get clienteId() {return this.#clienteId}
 
+    set clienteId(valor) {
+        this.#clienteId = valor;
+    }
+
     toString() {
         return `${this.tipo.toUpperCase()} - ${this.modelo} (${this.placa})`;
     }

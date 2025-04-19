@@ -1,58 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Cadastro</title>
 </head>
+
 <body>
     <div class="container">
         <h1>Cadastro Geral</h1>
 
         <form id="frmClientes">
             <input type="hidden" id="id">
-            
+        
             <label for="nome">Nome:</label>
             <input type="text" id="nome">
-
+        
             <label for="documento">Documento (CPF ou RG):</label>
             <input type="text" id="documento">
-
+        
             <label for="typeof-user">Tipo de Usuário:</label>
             <select name="typeof-user" id="typeof-user" required>
                 <option value="funcionario">Funcionário</option>
                 <option value="cliente">Cliente</option>
             </select>
-
+        
             <div id="funcionario-fields" class="subgroup" style="display: none;">
                 <label for="matricula">Matrícula:</label>
                 <input type="text" id="matricula" name="matricula">
-
+        
                 <label for="cargo">Cargo:</label>
                 <input type="text" id="cargo" name="cargo">
             </div>
-
+        
             <div id="client-fields" class="subgroup" style="display: none;">
-                <label for="veiculo">Veículo:</label>
-                <input type="text" id="veiculo" name="veiculo">
-
-                <label for="placa">Placa:</label>
-                <input type="text" id="placa" name="placa">
-
-                <label for="cor">Cor:</label>
-                <input type="text" id="cor" name="cor">
-
-                <label for="tipo-veiculo">Tipo de Veículo:</label>
-                <input type="text" id="tipo-veiculo" name="tipo-veiculo">
+                <div id="lista-veiculos"></div>
+                <button type="button" id="adicionar-veiculo">+ Adicionar Veículo</button>
             </div>
-
+        
             <button type="submit">Salvar</button>
-        </form>
+        </form>        
 
         <a href="./cadastrados/lista-cadastrados.html" class="botao-voltar">Ver Usuários</a>
     </div>
 
     <script type="module" src="./script.js"></script>
 </body>
+
 </html>
