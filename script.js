@@ -27,16 +27,14 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
     let pessoa;
     if (id) {
         pessoa = BancoDeDados.buscarPorId(id);
-        pessoa.nome = nome;
-        pessoa.documento = documento;
 
         if (pessoa instanceof Funcionario) {
-            pessoa.matricula = matricula;
-            pessoa.cargo = cargo;
+            pessoa.atualizarDados(nome, documento, matricula, cargo);
 
         } else if (pessoa instanceof Cliente) {
             const veiculo = new Veiculo(placa, nomeVeiculo, cor, tipoVeiculo, pessoa.id);
             pessoa.adicionarVeiculo(veiculo);
+            pessoa.atualizarDados(nome, documento, pessoa.veiculos)
         }
 
         BancoDeDados.atualizar(pessoa);

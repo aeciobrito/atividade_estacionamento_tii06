@@ -13,6 +13,17 @@ export class Pessoa {
     get nome() { return this.#nome; }
     get documento() { return this.#documento; }
 
+
+    // setters necessários para que as subclasses consigam ser editadas, no Update do CRUD
+    set nome(valor) {
+        this.#nome = valor;
+    }
+    
+    set documento(valor) {
+        this.#documento = valor;
+    }
+    
+
     static getNextId() {
         let maxId = 0;
         for (let i = 0; i < localStorage.length; i++) {
