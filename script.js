@@ -73,17 +73,33 @@ tipoUsuario.addEventListener('change', function () {
 
 // ----------------------- caso esteja editando -----------------------
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('id')) {
-    const pessoa = BancoDeDados.buscarPorId(urlParams.get('id'))
+if (urlParams.has('teste')) {
+    const pessoa = BancoDeDados.buscarPorId(urlParams.get('teste'));
 
     document.getElementById("id").value = pessoa.id;
     document.getElementById("nome").value = pessoa.nome;
     document.getElementById("documento").value = pessoa.documento;
-    document.getElementById("typeof-user").value = pessoa.user;
-    document.getElementById("matricula").value = pessoa.matricula;
-    document.getElementById("cargo").value = pessoa.cargo;
-    document.getElementById("veiculo").value = pessoa.veiculo;
-    document.getElementById("placa").value = pessoa.placa;
-    document.getElementById("cor").value = pessoa.cor;
-    document.getElementById("tipo-veiculo").value = pessoa.tipoVeiculo;
+
+    if (pessoa instanceof Funcionario) {
+        document.getElementById("typeof-user").value = "funcionario";
+        camposFuncionario.style.display = 'block';
+        camposCliente.style.display = 'none';
+
+        document.getElementById("matricula").value = pessoa.matricula;
+        document.getElementById("cargo").value = pessoa.cargo;
+    }
+
+    if (pessoa instanceof Cliente) {
+        document.getElementById("typeof-user").value = "cliente";
+        camposFuncionario.style.display = 'none';
+        camposCliente.style.display = 'block';
+
+        if (pessoa.veiculos.length > 0) {
+            const veiculo = pessoa.veiculos[0];
+            document.getElementById("veiculo").value = veiculo.modelo;
+            document.getElementById("placa").value = veiculo.placa;
+            document.getElementById("cor").value = veiculo.cor;
+            document.getElementById("tipo-veiculo").value = veiculo.tipo;
+        }
+    }
 }

@@ -1,18 +1,20 @@
 import { Pessoa } from "./Pessoa.js";
+import { Veiculo } from "./Veiculo.js";
 
 export class Cliente extends Pessoa {
-    #id;
+    _id;
     #veiculos = [];
 
     constructor(nome, documento, veiculos = []) {
         super(nome, documento)
-        this.#id = Cliente.getNextId();
+        this._id = Cliente.getNextId();
         this.#veiculos = veiculos;
     }
 
-    get id() { return this.#id; }
+    get id() { return this._id; }
     get veiculos() { return this.#veiculos }
 
+    // define o próximo id
     static getNextId() {
         let maxId = 0;
         for (let i = 0; i < localStorage.length; i++) {
@@ -25,14 +27,17 @@ export class Cliente extends Pessoa {
         return maxId + 1;
     }
 
+    // adiciona o veículo ao cliente correto
     adicionarVeiculo(veiculo) {
-        if (veiculo.clienteId === this.#id) {
+        if (veiculo.clienteId === this._id) {
             this.#veiculos.push(veiculo);
         } else {
             throw new Error("Este veículo não pertence a este cliente.");
         }
     }
 
+
+    // passa as informações para serem lidas na tela
     toString() {
         const veiculosInfo = this.#veiculos.map(v => 
             `Placa: ${v.placa}, Modelo: ${v.modelo}, Cor: ${v.cor}, Tipo: ${v.tipo}`
@@ -40,15 +45,29 @@ export class Cliente extends Pessoa {
         
         return `Cliente: ${this.nome}, Documento: ${this.documento}, Veículos: [${veiculosInfo}]`;
     }
-
-    restaurarId(id) {
-        this.#id = id;
-    }
-
-    static fromJSON(json, veiculos = []) {
+    
+    static fromJSON(json) {
+        const veiculos = (json.veiculos || []).map(v => new Veiculo(v.placa, v.modelo, v.cor, v.tipo, v.clienteId));
         const cliente = new Cliente(json.nome, json.documento, veiculos);
-        cliente.restaurarId(json.id);
+        cliente._id = json.id; // define manualmente o ID
         return cliente;
     }
     
+    // função usada para fornecer os dados para o BD conseguir salvar corretamente
+    toJSON() {
+        const dados = {
+            id: this.id,
+            nome: this.nome,
+            documento: this.documento,
+            tipo: "cliente",  // fixando como "cliente"
+            veiculos: this.veiculos.map(v => ({
+                placa: v.placa,
+                modelo: v.modelo,
+                cor: v.cor,
+                tipo: v.tipo,
+                clienteId: v.clienteId
+            }))
+        };
+        return dados;
+    }
 }

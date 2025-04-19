@@ -19,6 +19,20 @@ export class Funcionario extends Pessoa {
     }
 
     static fromJSON(json) {
-        return new Veiculo(json.placa, json.modelo, json.cor, json.tipo, json.clienteId);
+        const funcionario = new Funcionario(json.nome, json.documento, json.matricula, json.cargo);
+        funcionario._id = json.id;
+        return funcionario;
+    }
+    
+    // função usada para fornecer os dados para o BD conseguir salvar corretamente
+    toJSON() {
+        return {
+            id: this.id,
+            nome: this.nome,
+            documento: this.documento,
+            tipo: "funcionario",
+            matricula: this.matricula,
+            cargo: this.cargo
+        };
     }
 }
