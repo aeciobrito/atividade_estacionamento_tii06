@@ -5,10 +5,9 @@ import { Veiculo } from "../classes/Veiculo.js";
 
 export class BancoDeDados {
     static salvar(pessoa) {
-        const dados = pessoa.toJSON(); // Delegar a responsabilidade de como os dados são serializados para a própria classe
-        
-        localStorage.setItem(pessoa.id, JSON.stringify(dados)); // Salvar no localStorage
-    }
+        const dados = pessoa.toJSON();
+        localStorage.setItem(pessoa.id, JSON.stringify(dados)); 
+    }    
     
     static buscarTodos() {
         const usersCadastrados = [];
@@ -29,10 +28,13 @@ export class BancoDeDados {
     
     static buscarPorId(id) {
         const pessoaJSON = localStorage.getItem(id);
-        if (!pessoaJSON) return null;
-    
         const dados = JSON.parse(pessoaJSON);
         return BancoDeDados.instanciarPessoa(dados);
+    }    
+
+    static atualizar(pessoa) {
+        const dados = pessoa.toJSON();
+        localStorage.setItem(pessoa.id, JSON.stringify(dados));
     }    
 
     static instanciarPessoa(dados) {
@@ -44,5 +46,9 @@ export class BancoDeDados {
             default:
                 return Pessoa.fromJSON(dados);
         }
-    }    
+    }
+
+    static excluir(id) {
+        localStorage.removeItem(id);
+    }
 }

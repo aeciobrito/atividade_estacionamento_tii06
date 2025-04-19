@@ -14,7 +14,7 @@ if (users.length === 0) {
         const btnEditar = document.createElement("button");
         btnEditar.textContent = "Editar";
         btnEditar.onclick = () => {
-            window.location.href = `../index.html?teste=${p.id-1}` // navega para a tela inicial
+            window.location.href = `../index.html?id=${p.id}` // navega para a tela inicial
         }
         
         const btnExcluir = document.createElement("button");

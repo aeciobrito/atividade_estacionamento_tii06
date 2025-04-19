@@ -25,29 +25,49 @@ document.getElementById('frmClientes').addEventListener('submit', (e) => {
 
     // verifica se o usuário é funcionário ou cliente, para enviar os dados para o bd
     let pessoa;
-    if (tipo === "funcionario") {
+    if (id) {
+        pessoa = BancoDeDados.buscarPorId(id);
+        pessoa.nome = nome;
+        pessoa.documento = documento;
 
-        if (!matricula || !cargo) {
-            alert("Preencha matrícula e cargo do funcionário");
-            return;
+        if (pessoa instanceof Funcionario) {
+            pessoa.matricula = matricula;
+            pessoa.cargo = cargo;
+
+        } else if (pessoa instanceof Cliente) {
+            const veiculo = new Veiculo(placa, nomeVeiculo, cor, tipoVeiculo, pessoa.id);
+            pessoa.adicionarVeiculo(veiculo);
         }
-        pessoa = new Funcionario(nome, documento, matricula, cargo);
 
-    } else if (tipo === "cliente") {
+        BancoDeDados.atualizar(pessoa);
+    }
+    else {
+        if (tipo === "funcionario") {
 
-        if (!nomeVeiculo || !placa || !cor || !tipoVeiculo) {
-            alert("Preencha os dados do Veículo");
-            return;
+            if (!matricula || !cargo) {
+                alert("Preencha matrícula e cargo do funcionário");
+                return;
+            }
+            pessoa = new Funcionario(nome, documento, matricula, cargo);
+
+        } else if (tipo === "cliente") {
+
+            if (!nomeVeiculo || !placa || !cor || !tipoVeiculo) {
+                alert("Preencha os dados do Veículo");
+                return;
+            }
+
+            pessoa = new Cliente(nome, documento);
+            const veiculo = new Veiculo(placa, nomeVeiculo, cor, tipoVeiculo, pessoa.id);
+            pessoa.adicionarVeiculo(veiculo);
+
         }
 
-        pessoa = new Cliente(nome, documento);
-        const veiculo = new Veiculo(placa, nomeVeiculo, cor, tipoVeiculo, pessoa.id);
-        pessoa.adicionarVeiculo(veiculo);
-        
+        BancoDeDados.salvar(pessoa);
+        alert("Usuário Cadastrado com Sucesso!");
     }
 
-    BancoDeDados.salvar(pessoa);
-    alert("Usuário Cadastrado com Sucesso!");
+
     document.getElementById('frmClientes').reset();
     window.location.href = `../cadastrados/lista-cadastrados.html`
 });
@@ -73,8 +93,8 @@ tipoUsuario.addEventListener('change', function () {
 
 // ----------------------- caso esteja editando -----------------------
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('teste')) {
-    const pessoa = BancoDeDados.buscarPorId(urlParams.get('teste'));
+if (urlParams.has('id')) {
+    const pessoa = BancoDeDados.buscarPorId(urlParams.get('id'));
 
     document.getElementById("id").value = pessoa.id;
     document.getElementById("nome").value = pessoa.nome;

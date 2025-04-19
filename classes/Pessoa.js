@@ -17,7 +17,6 @@ export class Pessoa {
         let maxId = 0;
         for (let i = 0; i < localStorage.length; i++) {
             const chave = localStorage.key(i);
-
             if (!isNaN(parseInt(chave))) {
                 maxId = Math.max(maxId, parseInt(chave));
             }
@@ -25,16 +24,12 @@ export class Pessoa {
         return maxId + 1;
     }
 
-    // função necessária para buscar todos os usuários
     static fromJSON(json) {
-        const pessoaJson = new Pessoa(json.nome, json.documento);
-        pessoaJson.#id = json.id;
-        return pessoaJson;
+        return new Pessoa(json.nome, json.documento);
     }
 
-    // função que transforma os dados e os permite ser lidos na tela
+    // Função que transforma os dados para exibição
     toString() {
-        let mensagem = `Usuário: ${this.#nome}, Documento ${this.#documento}`;
-        return mensagem;
+        return `Usuário: ${this.#nome}, Documento: ${this.#documento}`;
     }
 }

@@ -11,6 +11,15 @@ export class Cliente extends Pessoa {
         this.#veiculos = veiculos;
     }
 
+    atualizarDados(nome, documento, veiculos) {
+        if(!nome || !documento || !veiculos) {
+            throw new Error("Dados Inválidos para Atualização");
+        }
+        super.nome = nome;
+        super.documento = documento;
+        this.#veiculos = veiculos;
+    }
+
     get id() { return this._id; }
     get veiculos() { return this.#veiculos }
 
@@ -59,7 +68,7 @@ export class Cliente extends Pessoa {
             id: this.id,
             nome: this.nome,
             documento: this.documento,
-            tipo: "cliente",  // fixando como "cliente"
+            tipo: "cliente",
             veiculos: this.veiculos.map(v => ({
                 placa: v.placa,
                 modelo: v.modelo,
