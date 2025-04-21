@@ -10,21 +10,35 @@
 
 <body>
     <h1>Cadastro de Veículos</h1>
-    <div class="form-container">
+
+    <div class="item">
+        <a href="clientesCadastrados.html">Clientes Cadastrados</a>
+    </div>
+
+    <div class="veiculoContainer">
+   
         <form id="formCadastroVeiculo">
-            <label for="marca">Marca</label>
-            <input type="text" id="marca" required>
+            <h2>Dados do Veículo</h2>
 
-            <label for="modelo">Modelo</label>
-            <input type="text" id="modelo" required>
+            <div class="containerDados">
 
-            <label for="cor">Cor</label>
-            <input type="text" id="cor" required>
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" required>
 
-            <label for="placa">Placa do Veículo</label>
-            <input type="text" id="placa" placeholder="Ex: ABC 1A23" pattern="[A-Z]{3} [0-9]{1}[A-Z]{1}[0-9]{2}"required>
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" required>
+            </div>
 
-            <label for="tipo">Tipo</label>
+            <div class="containerDados">
+                <label for="cor">Cor:</label>
+                <input type="text" id="cor" required>
+
+                <label for="placa">Placa:</label>
+                <input type="text" id="placa" placeholder="Ex: ABC 1A23" pattern="[A-Z]{3} [0-9]{1}[A-Z]{1}[0-9]{2}"
+                    required>
+            </div>
+
+            <label for="tipo">Tipo:</label>
             <select name="tipo" id="tipo" required>
                 <option value=" "></option>
                 <option value="carro">Carro</option>

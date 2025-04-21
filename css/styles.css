@@ -14,20 +14,23 @@
     font-family: Arial, sans-serif;
 }
 
+.item {
+    display: flex;
+}
+
 .item a {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 20px auto;
+    margin: 40px auto;
     position: relative;
 }
 
 a {
     position: absolute;
-    bottom: 10px;
+    bottom: 2px;
     width: 250px;
     height: 40px;
     border-radius: 8px;
@@ -51,7 +54,7 @@ h1 {
     font-size: 2rem;
     color: #fff;
     padding: 10px;
-    box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .form-container {
@@ -64,17 +67,18 @@ h1 {
 
 .form-container form {
     background-color: #ffffff;
-    padding: 30px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    margin: 0 auto;
+    width: 30%;
+    margin: 10% auto 20px auto;
+    border: 1px solid #333;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
 label {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
-    display: block;
     margin-top: 15px;
     color: #333;
 }
@@ -85,6 +89,7 @@ select {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
+    margin-bottom: 10px;
     border: 1px solid #888;
     border-radius: 5px;
     box-sizing: border-box;
@@ -93,6 +98,7 @@ select {
 select option {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
+   
 }
 
 button {
@@ -125,6 +131,34 @@ th {
     background-color: #f2f2f2;
     margin: 0 auto;
 }
+
+.containerDados {
+    display: flex;
+    margin: 10px auto;
+     width: 99%;
+}
+
+.containerDados input {
+    width: 100%;
+    height: 30px;
+    margin: 5px;
+   
+}
+
+h2 {
+    padding: 15px;
+}
+
+.veiculoContainer {
+    width: 60%;
+    margin:0 auto;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
 
 @media (max-width: 600px) {
     .container {
