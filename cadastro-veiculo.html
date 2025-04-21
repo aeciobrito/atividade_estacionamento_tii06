@@ -45,11 +45,18 @@
                 <option value="moto">Moto</option>
             </select>
 
-            <button type="submit">Cadastrar Veículo</button>
+            <div>
+                <label for="clienteId">Cliente:</label>
+                <select id="clienteId" name="clienteId" required>
+                    <option value="">Selecione um cliente</option>
+                </select>
+            </div>
+
+            <button type="submit" id="btnCadastrarVeiculo">Cadastrar Veículo</button>
         </form>
     </div>
 
-    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/cadastrar-veiculo.js"></script>
 </body>
 
 </html>
