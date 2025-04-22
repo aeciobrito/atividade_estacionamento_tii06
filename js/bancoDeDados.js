@@ -15,7 +15,7 @@ function carregarClientesDoLocalStorage() {
 
 export function inicializarBancoDeDados() {
     carregarClientesDoLocalStorage();
-    // Adicione aqui outras funções de carregamento inicial, se necessário
+    carregarVeiculoDoLocalStorage(); // Corrigido
 }
 
 export function salvarClienteNoBanco(cliente) {
@@ -29,14 +29,22 @@ export function buscarClientePorId(id) {
 }
 
 export function listarTodosClientes() {
-    console.log('listarTodosClientes foi chamada'); // Adicione esta linha
-    console.log(clientes); // Adicione esta linha para ver o conteúdo do array
+    console.log('listarTodosClientes foi chamada');
+    console.log(clientes);
     return [...clientes]; // Retorna uma cópia
 }
 
 // --- Funções para Veículos ---
 
-// (Mantenha as funções de veículos como estão)
+function carregarVeiculoDoLocalStorage() {
+    const veiculoDoStorage = localStorage.getItem('veiculos');
+    if(veiculoDoStorage) {
+        veiculos = JSON.parse(veiculoDoStorage);
+        console.log("Veiculos carregados do Local Storage para o banco de dados:", veiculos);
+    }
+}
+
+
 export function salvarVeiculoNoBanco(veiculo) {
     veiculos.push(veiculo);
     console.log("Veículo salvo no banco de dados:", veiculo);
@@ -45,7 +53,7 @@ export function salvarVeiculoNoBanco(veiculo) {
 }
 
 export function buscarVeiculosPorClienteId(clienteId) {
-    return veiculos.filter(veiculo => veiculo.clienteId === clienteId);
+    return veiculos.filter(veiculo => veiculo.clienteId === parseInt(clienteId)); // Garante que clienteId seja um número
 }
 
 export function buscarVeiculoPorPlaca(placa) {

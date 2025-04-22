@@ -5,17 +5,32 @@ inicializarBancoDeDados();
 
 document.addEventListener('DOMContentLoaded', () => {
     const clienteSelect = document.getElementById('clienteId');
-    console.log(clienteSelect); // Adicione esta linha
+
+    if (!clienteSelect) {
+        console.error("Elemento 'clienteId' não encontrado no DOM.");
+        return;
+    }
+
     // Carregar a lista de clientes e popular o select
     const clientes = listarTodosClientes();
-    clientes.forEach(cliente => {
-        const option = document.createElement('option');
-        option.value = cliente.id;
-        option.textContent = `${cliente.nome} (ID: ${cliente.id})`;
-        clienteSelect.appendChild(option);
-    });
+    
+    if (!clientes || clientes.length === 0) {
+        console.warn("Nenhum cliente encontrado. Certifique-se de que o banco de dados foi inicializado corretamente.");
+    } else {
+        clientes.forEach(cliente => {
+            const option = document.createElement('option');
+            option.value = cliente.id;
+            option.textContent = `${cliente.nome} (ID: ${cliente.id})`;
+            clienteSelect.appendChild(option);
+        });
+    }
 
     const formCadastroVeiculo = document.getElementById('formCadastroVeiculo');
+    if (!formCadastroVeiculo) {
+        console.error("Elemento 'formCadastroVeiculo' não encontrado.");
+        return;
+    }
+
     const marcaInput = document.getElementById('marca');
     const modeloInput = document.getElementById('modelo');
     const corInput = document.getElementById('cor');
@@ -32,18 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const placa = placaInput.value;
         const tipo = tipoSelect.value;
 
-        if (clienteId) {
-            // Chamar a função cadastrarVeiculo no main.js (precisamos garantir que ela esteja acessível aqui)
-            if (window.opener && typeof window.opener.cadastrarVeiculo === 'function') {
-                window.cadastrarVeiculo(clienteId, marca, modelo, cor, placa, tipo);
-                alert('Veículo cadastrado com sucesso!');
-                formCadastroVeiculo.reset();
-            } else {
-                console.error('A função cadastrarVeiculo não está acessível na janela pai.');
-                alert('Erro ao cadastrar veículo.');
-            }
-        } else {
+        if (!clienteId) {
             alert('Por favor, selecione um cliente.');
+            return;
         }
+
+        const veiculoData = {
+            clienteId: clienteId,
+            marca: marca,
+            modelo: modelo,
+            cor: cor,
+            placa: placa,
+            tipo: tipo
+        };
+
+        // Verificar se a janela foi aberta via window.open()
+        if (window.opener && !window.opener.closed) {
+            window.opener.postMessage({ type: 'cadastrarNovoVeiculo', payload: veiculoData }, '*');
+            alert('Dados do veículo enviados para cadastro.');
+        } else {
+            console.error("A janela pai não existe ou já foi fechada. Não será possível enviar os dados.");
+        }
+
+        formCadastroVeiculo.reset();
+
+        // Certificar que a página pode ser fechada corretamente
+        setTimeout(() => {
+            if (window.opener) {
+                window.opener.postMessage({ type: 'cadastrarNovoVeiculo', payload: veiculoData }, '*');
+            } else {
+                alert("A janela de origem não está disponível. Por favor, volte à tela anterior e tente novamente.");
+            }
+            
+        }, 500); // Pequeno atraso para garantir que a mensagem seja enviada
     });
 });
