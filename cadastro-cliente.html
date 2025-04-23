@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <h1>Cadastro de Clientes</h1>
+
+    <div class="form-container">
+
+        <form id="formCliente">
+            <input type="hidden" id="clienteId">
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Nome do Cliente" required>
+
+            <label for="documento">Documento:</label>
+            <input type="text" id="documento" placeholder="CPF: 999.999.999-99"
+                pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" required>
+
+
+            <button type="submit">Cadastrar Cliente</button>
+
+        </form>
+
+        <div class="item">
+            <a href="index.html">Clientes Cadastrados</a>
+        </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
