@@ -15,7 +15,7 @@ function carregarClientesDoLocalStorage() {
 
 export function inicializarBancoDeDados() {
     carregarClientesDoLocalStorage();
-    carregarVeiculoDoLocalStorage(); // Corrigido
+    
 }
 
 export function salvarClienteNoBanco(cliente) {

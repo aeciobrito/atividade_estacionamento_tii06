@@ -1,5 +1,5 @@
 import { listarTodosClientes, inicializarBancoDeDados } from './bancoDeDados.js';
-
+import { Veiculo } from './Veiculo.js';
 // Inicializar o banco de dados ao carregar a página de cadastro de veículos
 inicializarBancoDeDados();
 
@@ -28,55 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
-export class Veiculo {
-    
-    #id; // Será o mesmo do cliente
-    #marca;
-    #modelo;
-    #cor;
-    #placa;
-    #tipo;
-    #clienteId;
-
-    constructor(clienteId, marca, modelo, cor, placa, tipo) {
-        this.#id = clienteId;
-        this.#marca = marca;
-        this.#modelo = modelo;
-        this.#cor = cor;
-        this.#placa = placa;
-        this.#tipo = tipo;
-        this.#clienteId = clienteId;
-    }
-
-    getId() {
-        return this.#id;
-    }
-
-    getMarca() {
-        return this.#marca;
-    }
-
-    getModelo() {
-        return this.#modelo;
-    }
-
-    getCor() {
-        return this.#cor;
-    }
-
-    getPlaca() {
-        return this.#placa;
-    }
-
-    getTipo() {
-        return this.#tipo;
-    }
-
-    getClienteId() {
-        return this.#clienteId;
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const formCadastro = document.getElementById('formCadastroVeiculo');
     const listaVeiculosElement = document.getElementById('veiculosCadastrados');
@@ -103,6 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarVeiculos();
     }
 
+    function carregarVeiculoDoLocalStorage() {
+        const veiculoDoStorage = localStorage.getItem('veiculos');
+        if(veiculoDoStorage) {
+            novoVeiculo = JSON.parse(veiculoDoStorage);
+            console.log("Veiculos carregados do Local Storage para o banco de dados:", novoVeiculo);
+        }
+    }
+
+    carregarVeiculoDoLocalStorage();
+
     function salvarVeiculo(veiculo) {
         let veiculos = obterVeiculos();
         veiculos.push(veiculo);
@@ -126,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const lista = document.createElement('ul');
         veiculos.forEach((veiculo, index) => {
             const item = document.createElement('li');
-            item.textContent = `${veiculo.getClienteId()} - ${veiculo.getMarca()} ${veiculo.getModelo()} ${veiculo.getCor()}  - Placa: ${veiculo.getPlaca()} ${veiculo.getTipo()}  `;
+            item.textContent = ` ${veiculo.Marca} ${veiculo.Modelo} ${veiculo.Cor}  - Placa: ${veiculo.Placa} ${veiculo.Tipo}  `;
 
             const botaoRemover = document.createElement('button');
             botaoRemover.textContent = 'Remover';
