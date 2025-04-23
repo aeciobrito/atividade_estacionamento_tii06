@@ -1,6 +1,5 @@
 // main.js
 import { Cliente } from './Clientes.js';
-import {Veiculo} from './Veiculo.js'
 import { salvarClienteNoBanco, listarTodosClientes, listarTodosVeiculos, inicializarBancoDeDados, salvarVeiculoNoBanco, buscarVeiculosPorClienteId } from './bancoDeDados.js'; // Importe as funções necessárias
 
 // Inicializar o banco de dados carregando dados do Local Storage
@@ -104,58 +103,24 @@ function atualizarListaClientes() {
 
 atualizarListaClientes(); // Chame também na inicialização, se necessário
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnCadastrarCliente = document.getElementById('btnCliente');
+        if (btnCadastrarCliente) {
+            btnCadastrarCliente.addEventListener('click', () => {
+                window.open('cadastro-cliente.html', '_self');
+            });
+        } else {
+            console.error("Botão 'btnCadastrarCliente' não encontrado.");
+        }
+    });
 
-
-novoVeiculoCadastrado = formCadastroVeiculo.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const marcaInput = document.getElementById('marca');
-  const modeloInput = document.getElementById('modelo');
-  const corInput = document.getElementById('cor');
-  const placaInput = document.getElementById('placa');
-  const tipoSelect = document.getElementById('tipo');
-
-  if (!clienteSelect.value || !marcaInput.value || !modeloInput.value || !corInput.value || !placaInput.value || !tipoSelect.value) {
-      alert("Todos os campos devem ser preenchidos.");
-      return;
-  }
-
-  const novoVeiculo = {
-      clienteId: clienteSelect.value,
-      marca: marcaInput.value,
-      modelo: modeloInput.value,
-      cor: corInput.value,
-      placa: placaInput.value,
-      tipo: tipoSelect.value,
-      dataCadastro: new Date().toISOString()
-  };
-
-  // Salvar o veículo no banco de dados (Local Storage)
-  salvarVeiculoNoBanco(novoVeiculo);
-
-  alert('Veículo cadastrado com sucesso!');
-  formCadastroVeiculo.reset();
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const btnCadastrarCliente = document.getElementById('btnCliente');
-    if (btnCadastrarCliente) {
-        btnCadastrarCliente.addEventListener('click', () => {
-            window.open('cadastro-cliente.html', '_self');
-        });
-    } else {
-        console.error("Botão 'btnCadastrarCliente' não encontrado.");
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const botaoAbrirCadastroVeiculo = document.getElementById('btnVeiculo');
-    if (botaoAbrirCadastroVeiculo) {
-        botaoAbrirCadastroVeiculo.addEventListener('click', () => {
-          const novajanela =  window.open('cadastro-veiculo.html', '_self');
-        });
-    } else {
-        console.error("Botão 'abrirCadastroVeiculo' não encontrado.");
-    }
-});
+    document.addEventListener('DOMContentLoaded', () => {
+        const botaoAbrirCadastroVeiculo = document.getElementById('btnVeiculo');
+        if (botaoAbrirCadastroVeiculo) {
+            botaoAbrirCadastroVeiculo.addEventListener('click', () => {
+                const novajanela = window.open('cadastro-veiculo.html', '_self');
+            });
+        } else {
+            console.error("Botão 'abrirCadastroVeiculo' não encontrado.");
+        }
+    });

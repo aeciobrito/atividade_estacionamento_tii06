@@ -20,7 +20,10 @@
         <form id="formCadastroVeiculo">
             <h2>Dados do Veículo</h2>
 
+
+
             <div class="containerDados">
+                <!-- <input type="hidden" id="clienteId"> -->
 
                 <label for="marca">Marca:</label>
                 <input type="text" id="marca" required>
@@ -54,9 +57,14 @@
 
             <button type="submit" id="btnCadastrarVeiculo">Cadastrar Veículo</button>
         </form>
+        <div id="listaVeiculos">
+            <h2>Veículos Cadastrados</h2>
+            <ul id="veiculosCadastrados"></ul>
+        </div>
     </div>
 
     <script type="module" src="./js/cadastrar-veiculo.js"></script>
+    <script type="module" src="./js/bancoDeDados.js"></script>
 </body>
 
 </html>

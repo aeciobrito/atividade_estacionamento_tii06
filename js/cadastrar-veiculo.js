@@ -25,60 +25,123 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const formCadastroVeiculo = document.getElementById('formCadastroVeiculo');
-    if (!formCadastroVeiculo) {
-        console.error("Elemento 'formCadastroVeiculo' não encontrado.");
-        return;
+    
+});
+
+export class Veiculo {
+    
+    #id; // Será o mesmo do cliente
+    #marca;
+    #modelo;
+    #cor;
+    #placa;
+    #tipo;
+    #clienteId;
+
+    constructor(clienteId, marca, modelo, cor, placa, tipo) {
+        this.#id = clienteId;
+        this.#marca = marca;
+        this.#modelo = modelo;
+        this.#cor = cor;
+        this.#placa = placa;
+        this.#tipo = tipo;
+        this.#clienteId = clienteId;
     }
 
-    const marcaInput = document.getElementById('marca');
-    const modeloInput = document.getElementById('modelo');
-    const corInput = document.getElementById('cor');
-    const placaInput = document.getElementById('placa');
-    const tipoSelect = document.getElementById('tipo');
+    getId() {
+        return this.#id;
+    }
 
-    formCadastroVeiculo.addEventListener('submit', (event) => {
+    getMarca() {
+        return this.#marca;
+    }
+
+    getModelo() {
+        return this.#modelo;
+    }
+
+    getCor() {
+        return this.#cor;
+    }
+
+    getPlaca() {
+        return this.#placa;
+    }
+
+    getTipo() {
+        return this.#tipo;
+    }
+
+    getClienteId() {
+        return this.#clienteId;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const formCadastro = document.getElementById('formCadastroVeiculo');
+    const listaVeiculosElement = document.getElementById('veiculosCadastrados');
+    const chaveLocalStorage = 'veiculosCadastrados';
+
+    carregarVeiculos();
+
+    formCadastro.addEventListener('submit', function(event) {
         event.preventDefault();
+        cadastrarVeiculo();
+    });
 
-        const clienteId = clienteSelect.value;
-        const marca = marcaInput.value;
-        const modelo = modeloInput.value;
-        const cor = corInput.value;
-        const placa = placaInput.value;
-        const tipo = tipoSelect.value;
+    function cadastrarVeiculo() {
+        const clienteId = document.getElementById('clienteId').value;
+        const marca = document.getElementById('marca').value;
+        const modelo = document.getElementById('modelo').value;
+        const cor = document.getElementById('cor').value;
+        const placa = document.getElementById('placa').value;
+        const tipo = document.getElementById('tipo').value;
 
-        if (!clienteId) {
-            alert('Por favor, selecione um cliente.');
+        const novoVeiculo = new Veiculo(clienteId, marca, modelo, cor, placa, tipo);
+        salvarVeiculo(novoVeiculo);
+        formCadastro.reset();
+        carregarVeiculos();
+    }
+
+    function salvarVeiculo(veiculo) {
+        let veiculos = obterVeiculos();
+        veiculos.push(veiculo);
+        localStorage.setItem(chaveLocalStorage, JSON.stringify(veiculos));
+    }
+
+    function obterVeiculos() {
+        const dados = localStorage.getItem(chaveLocalStorage);
+        return dados ? JSON.parse(dados) : [];
+    }
+
+    function carregarVeiculos() {
+        listaVeiculosElement.innerHTML = '';
+        const veiculos = obterVeiculos();
+
+        if (veiculos.length === 0) {
+            listaVeiculosElement.innerHTML = '<p>Nenhum veículo cadastrado ainda.</p>';
             return;
         }
 
-        const veiculoData = {
-            clienteId: clienteId,
-            marca: marca,
-            modelo: modelo,
-            cor: cor,
-            placa: placa,
-            tipo: tipo
-        };
+        const lista = document.createElement('ul');
+        veiculos.forEach((veiculo, index) => {
+            const item = document.createElement('li');
+            item.textContent = `${veiculo.getClienteId()} - ${veiculo.getMarca()} ${veiculo.getModelo()} ${veiculo.getCor()}  - Placa: ${veiculo.getPlaca()} ${veiculo.getTipo()}  `;
 
-        // Verificar se a janela foi aberta via window.open()
-        if (window.opener && !window.opener.closed) {
-            window.opener.postMessage({ type: 'cadastrarNovoVeiculo', payload: veiculoData }, '*');
-            alert('Dados do veículo enviados para cadastro.');
-        } else {
-            console.error("A janela pai não existe ou já foi fechada. Não será possível enviar os dados.");
-        }
+            const botaoRemover = document.createElement('button');
+            botaoRemover.textContent = 'Remover';
+            botaoRemover.addEventListener('click', () => removerVeiculo(index));
 
-        formCadastroVeiculo.reset();
+            item.appendChild(botaoRemover);
+            lista.appendChild(item);
+        });
+        listaVeiculosElement.appendChild(lista);
+    }
 
-        // Certificar que a página pode ser fechada corretamente
-        setTimeout(() => {
-            if (window.opener) {
-                window.opener.postMessage({ type: 'cadastrarNovoVeiculo', payload: veiculoData }, '*');
-            } else {
-                alert("A janela de origem não está disponível. Por favor, volte à tela anterior e tente novamente.");
-            }
-            
-        }, 500); // Pequeno atraso para garantir que a mensagem seja enviada
-    });
+    function removerVeiculo(index) {
+        let veiculos = obterVeiculos();
+        veiculos.splice(index, 1);
+        localStorage.setItem(chaveLocalStorage, JSON.stringify(veiculos));
+        carregarVeiculos();
+    }
 });
