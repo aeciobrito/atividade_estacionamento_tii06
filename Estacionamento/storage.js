@@ -10,30 +10,30 @@ function recuperarClientes() {
     return veiculosStorage ? JSON.parse(veiculosStorage) : [];
   }
   
-  // Inicializando os arrays de clientes e veículos a partir do localStorage
+  
   let clientes = recuperarClientes();
   let veiculos = recuperarVeiculos();
   
-  // Função para salvar os clientes no localStorage
+  // salvar os clientes e veiculos no localStorage
   function salvarClientes() {
     localStorage.setItem("clientes", JSON.stringify(clientes));
   }
   
-  // Função para salvar os veículos no localStorage
   function salvarVeiculos() {
     localStorage.setItem("veiculos", JSON.stringify(veiculos));
   }
   
-  // Função para cadastrar cliente
+  // cadastrar cliente e cadastrar veiculos
   function cadastrarCliente() {
     const nome = document.getElementById("nome-cliente").value.trim();
     const telefone = document.getElementById("telefone-cliente").value.trim();
+    const CPF = document.getElementById("cpf-cliente").value.trim();
     const endereco = document.getElementById("endereco-cliente").value.trim();
   
     if (nome && telefone && endereco) {
       const cliente = { nome, telefone, endereco };
       clientes.push(cliente);
-      salvarClientes(); // Salva a lista de clientes no localStorage
+      salvarClientes();
       alert("Cliente cadastrado com sucesso!");
       listarClientes();
       limparCamposCliente();
@@ -42,7 +42,6 @@ function recuperarClientes() {
     }
   }
   
-  // Função para cadastrar veículo
   function cadastrarVeiculo() {
     const placa = document.getElementById("placa-veiculo").value.trim();
     const modelo = document.getElementById("modelo-veiculo").value.trim();
@@ -55,7 +54,7 @@ function recuperarClientes() {
       if (cliente) {
         const veiculo = { placa, modelo, cor, proprietario };
         veiculos.push(veiculo);
-        salvarVeiculos(); // Salva a lista de veículos no localStorage
+        salvarVeiculos(); 
         alert("Veículo cadastrado com sucesso!");
         listarVeiculos();
         limparCamposVeiculo();
@@ -67,7 +66,7 @@ function recuperarClientes() {
     }
   }
   
-  // Função para listar os clientes cadastrados
+  // clientes e veiculos cadastrados
   function listarClientes() {
     const lista = document.getElementById("clientes-list");
     lista.innerHTML = clientes.length
@@ -75,7 +74,7 @@ function recuperarClientes() {
       : "<li>Não há clientes cadastrados.</li>";
   }
   
-  // Função para listar os veículos cadastrados
+  
   function listarVeiculos() {
     const lista = document.getElementById("veiculos-list");
     lista.innerHTML = veiculos.length
@@ -83,14 +82,14 @@ function recuperarClientes() {
       : "<li>Não há veículos cadastrados.</li>";
   }
   
-  // Função para limpar campos de cadastro de cliente
+  // limpar campos 
   function limparCamposCliente() {
     document.getElementById("nome-cliente").value = '';
     document.getElementById("telefone-cliente").value = '';
     document.getElementById("endereco-cliente").value = '';
   }
   
-  // Função para limpar campos de cadastro de veículo
+
   function limparCamposVeiculo() {
     document.getElementById("placa-veiculo").value = '';
     document.getElementById("modelo-veiculo").value = '';
@@ -98,12 +97,10 @@ function recuperarClientes() {
     document.getElementById("proprietario-veiculo").value = '';
   }
   
-  // Função chamada ao carregar a página para garantir que as listas de clientes e veículos sejam exibidas
   function carregarDados() {
     listarClientes();
     listarVeiculos();
   }
   
-  // Chama a função de carregamento de dados assim que a página for carregada
   window.onload = carregarDados;
   

@@ -4,10 +4,11 @@ let veiculos = [];
 function cadastrarCliente() {
   const nome = document.getElementById("nome-cliente").value.trim();
   const telefone = document.getElementById("telefone-cliente").value.trim();
+  const CPF = document.getElementById("cpf-cliente").vlaue.trim();
   const endereco = document.getElementById("endereco-cliente").value.trim();
 
-  if (nome && telefone && endereco) {
-    clientes.push({ nome, telefone, endereco });
+  if (nome && telefone && CPF && endereco) {
+    clientes.push({ nome, telefone,CPF ,endereco });
     alert("Cliente cadastrado com sucesso!");
     listarClientes();
     limparCamposCliente();
@@ -41,20 +42,21 @@ function cadastrarVeiculo() {
 function listarClientes() {
   const lista = document.getElementById("clientes-list");
   lista.innerHTML = clientes.length
-    ? clientes.map(c => `<li><span>${c.nome}</span> - ${c.telefone} - ${c.endereco}</li>`).join("")
-    : "<li>Não há clientes cadastrados.</li>";
+     clientes.map(c => `<li><span>${c.nome}</span> - ${c.telefone} - ${c.endereco}</li>`).join("")
+    "<li>Não há clientes cadastrados.</li>";
 }
 
 function listarVeiculos() {
   const lista = document.getElementById("veiculos-list");
   lista.innerHTML = veiculos.length
-    ? veiculos.map(v => `<li><span>${v.modelo}</span> - ${v.placa} - ${v.cor} - Proprietário: ${v.proprietario}</li>`).join("")
-    : "<li>Não há veículos cadastrados.</li>";
+   veiculos.map(v => `<li><span>${v.modelo}</span> - ${v.placa} - ${v.cor} - Proprietário: ${v.proprietario}</li>`).join("")
+   "<li>Não há veículos cadastrados.</li>";
 }
 
 function limparCamposCliente() {
   document.getElementById("nome-cliente").value = '';
   document.getElementById("telefone-cliente").value = '';
+  document.getElementById("cpf-clientes").value = '';
   document.getElementById("endereco-cliente").value = '';
 }
 
