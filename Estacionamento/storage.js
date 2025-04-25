@@ -1,10 +1,10 @@
-// Função para recuperar clientes do localStorage
+
 function recuperarClientes() {
     const clientesStorage = localStorage.getItem("clientes");
     return clientesStorage ? JSON.parse(clientesStorage) : [];
   }
   
-  // Função para recuperar veículos do localStorage
+  
   function recuperarVeiculos() {
     const veiculosStorage = localStorage.getItem("veiculos");
     return veiculosStorage ? JSON.parse(veiculosStorage) : [];
@@ -14,7 +14,7 @@ function recuperarClientes() {
   let clientes = recuperarClientes();
   let veiculos = recuperarVeiculos();
   
-  // salvar os clientes e veiculos no localStorage
+
   function salvarClientes() {
     localStorage.setItem("clientes", JSON.stringify(clientes));
   }
