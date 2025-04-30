@@ -56,11 +56,17 @@ export class Cliente extends Pessoa {
     }
     
     static fromJSON(json) {
-        const veiculos = (json.veiculos || []).map(v => new Veiculo(v.placa, v.modelo, v.cor, v.tipo, v.clienteId));
-        const cliente = new Cliente(json.nome, json.documento, veiculos);
-        cliente._id = json.id; // define manualmente o ID
+        const cliente = new Cliente(json.nome, json.documento);
+        cliente._id = json.id;
+    
+        (json.veiculos || []).forEach(v => {
+            const veiculo = new Veiculo(v.placa, v.modelo, v.cor, v.tipo, json.id);
+            cliente.adicionarVeiculo(veiculo);
+        });
+    
         return cliente;
     }
+    
     
     // função usada para fornecer os dados para o BD conseguir salvar corretamente
     toJSON() {
@@ -68,7 +74,7 @@ export class Cliente extends Pessoa {
             id: this.id,
             nome: this.nome,
             documento: this.documento,
-            tipo: "cliente",
+            _tipo: "cliente",
             veiculos: this.veiculos.map(v => ({
                 placa: v.placa,
                 modelo: v.modelo,

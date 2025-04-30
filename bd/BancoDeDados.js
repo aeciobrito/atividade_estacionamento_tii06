@@ -38,7 +38,7 @@ export class BancoDeDados {
     }    
 
     static instanciarPessoa(dados) {
-        switch (dados.tipo) {
+        switch (dados._tipo) {
             case "cliente":
                 return Cliente.fromJSON(dados);
             case "funcionario":

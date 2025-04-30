@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Estacionamento</title>
+    <link rel="stylesheet" href="entrada.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registro de Estacionamento</h1>
+
+        <label for="selectCliente">Selecione o Cliente:</label>
+        <select id="selectCliente">
+            <option value="">-- Selecione --</option>
+        </select>
+
+        <label for="selectVeiculo">Selecione o Veículo:</label>
+        <select id="selectVeiculo">
+            <option value="">-- Selecione um cliente primeiro --</option>
+        </select>
+
+        <button onclick="registrarEntrada()">Registrar Entrada</button>
+        <button onclick="registrarSaida()">Registrar Saída</button>
+    </div>
+
+    <script type="module">
+        import { BancoDeDados } from '../bd/BancoDeDados.js';
+        import { Cliente } from '../classes/Cliente.js';
+        import { Veiculo } from '../classes/Veiculo.js';
+        import { RegistroEstacionamento } from '../classes/RegistroEstacionamento.js';
+    
+        const selectCliente = document.getElementById('selectCliente');
+        const selectVeiculo = document.getElementById('selectVeiculo');
+    
+        let clientes = [];
+        let registro = null;
+    
+        function carregarClientes() {
+          const dados = BancoDeDados.buscarTodos();
+          clientes = dados.filter(pessoa => pessoa instanceof Cliente);
+    
+          if (clientes.length === 0) {
+            alert("Nenhum cliente encontrado.");
+          }
+    
+          clientes.forEach((cliente, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = cliente.nome;
+            selectCliente.appendChild(option);
+          });
+        }
+    
+        selectCliente.addEventListener('change', () => {
+          const clienteIndex = selectCliente.value;
+          const cliente = clientes[clienteIndex];
+    
+          selectVeiculo.innerHTML = '<option value="">-- Selecione --</option>';
+          if (cliente && cliente.veiculos?.length) {
+            selectVeiculo.style.display = 'block';
+            cliente.veiculos.forEach((veiculo, i) => {
+              const option = document.createElement('option');
+              option.value = i;
+              option.textContent = `${veiculo.modelo} (${veiculo.placa})`;
+              selectVeiculo.appendChild(option);
+            });
+          } else {
+            selectVeiculo.style.display = 'none';
+            selectVeiculo.innerHTML = '<option value="">Nenhum veículo</option>';
+          }
+        });
+    
+        window.registrarEntrada = () => {
+          const clienteIndex = selectCliente.value;
+          const veiculoIndex = selectVeiculo.value;
+    
+          if (clienteIndex === "" || veiculoIndex === "") {
+            alert("Selecione cliente e veículo.");
+            return;
+          }
+    
+          const cliente = clientes[clienteIndex];
+          const veiculo = Veiculo.fromJSON(cliente.veiculos[veiculoIndex]);
+    
+          registro = new RegistroEstacionamento();
+          registro.estacionar(veiculo, cliente);
+        };
+    
+        window.registrarSaida = () => {
+          if (!registro) {
+            alert("Nenhum veículo estacionado.");
+            return;
+          }
+    
+          registro.saida();
+          alert(`Valor final: R$ ${registro.getValorCobrado()}`);
+        };
+    
+        carregarClientes();
+      </script>
+</body>
+
+</html>

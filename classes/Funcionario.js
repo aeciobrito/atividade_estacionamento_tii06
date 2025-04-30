@@ -44,7 +44,7 @@ export class Funcionario extends Pessoa {
             id: this.id, 
             nome: this.nome,
             documento: this.documento,
-            tipo: "funcionario",
+            _tipo: "funcionario",
             matricula: this.matricula,
             cargo: this.cargo
         };
