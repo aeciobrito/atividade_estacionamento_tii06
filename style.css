@@ -1,0 +1,150 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #555;
+    font-weight: 600;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #3498db;
+    outline: none;
+    background-color: #f9f9ff;
+}
+
+.subgroup {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f9ff;
+    border-left: 5px solid #3498db;
+    border-radius: 6px;
+}
+
+button[type="submit"] {
+    margin-top: 25px;
+    padding: 14px;
+    width: 100%;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.botao-voltar {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.botao-voltar:hover {
+    background-color: #0056b3;
+}
+
+/* 🎯 Estilo para cada bloco de veículo */
+#lista-veiculos {
+    margin-top: 20px;
+}
+
+.veiculo {
+    background-color: #eef7ff;
+    border: 1px solid #cce0f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.veiculo label {
+    margin-top: 10px;
+}
+
+.veiculo input {
+    margin-bottom: 10px;
+}
+
+.veiculo hr {
+    margin-top: 20px;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.remover-veiculo {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.remover-veiculo:hover {
+    background-color: #c82333;
+}
+
+#adicionar-veiculo {
+    margin-top: 15px;
+    padding: 10px 14px;
+    background-color: #17a2b8;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#adicionar-veiculo:hover {
+    background-color: #138496;
+}

@@ -1,0 +1,87 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+ul.lista-users {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.lista-users li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-left: 6px solid #3498db;
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+ul.lista-users li:hover {
+    background-color: #f0f8ff;
+}
+
+ul.lista-users li span {
+    flex: 1;
+    margin-right: 15px;
+}
+
+ul.lista-users li button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+ul.lista-users li button:hover {
+    background-color: #2980b9;
+}
+
+ul.lista-users li button:last-child {
+    background-color: #e74c3c;
+}
+
+ul.lista-users li button:last-child:hover {
+    background-color: #c0392b;
+}
+
+.botao-voltar {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #3498db;
+}
+
+.botao-voltar:hover {
+    color: #1c5980;
+    text-decoration: underline;
+}
